@@ -2,7 +2,7 @@ package dominio;
 
 public class Moto extends Vehiculo{
 	
-	public final int cilindraje;
+	private  int cilindraje;
 	
 
 	public Moto(String placa, int cilindraje) {
@@ -12,7 +12,7 @@ public class Moto extends Vehiculo{
 
 
 	public int getCilindraje() {
-		return this.cilindraje;
+		return cilindraje;
 	}
 
 	
