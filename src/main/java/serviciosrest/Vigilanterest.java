@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import dominio.Carro;
 import dominio.ReciboDeServicioParqueadero;
+import dominio.Vehiculo;
 import dominio.Vigilante;
+import repositorio.RepositorioRecibo;
+import repositorio.RepositorioVehiculo;
 
 @EnableAutoConfiguration
 @Transactional
@@ -21,18 +23,22 @@ public class Vigilanterest {
 	
 	@Autowired
 	Vigilante vigilante;
-	
+	@Autowired
+	RepositorioRecibo repositorioRecibo;
+	@Autowired
+	RepositorioVehiculo repositorioVehiculo;
 
 	@RequestMapping("/")
 	@ResponseBody
 	String home() {
-		return "Parqueadero";
+		return "PARQUEADERO";
 	}
-
+	
 	@RequestMapping(value = "/IngresoCarro", method = RequestMethod.POST)
 	@ResponseBody
-	public ReciboDeServicioParqueadero servicioIngresarCarro(@RequestBody Carro carro) {
-			return(vigilante.ingresarUnVehiculo(carro));
-			
+	public void servicioIngresarCarro(@RequestBody Vehiculo carro) {
+		vigilante.ingresarUnVehiculo(carro);
+			//return(repositorioRecibo.obtenerPorPlaca(carro.getPlaca()));
+						
 	}
 }

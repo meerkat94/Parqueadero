@@ -11,35 +11,31 @@ import javax.persistence.NamedQuery;
 @Entity(name = "Vehiculo")
 @NamedQueries({
 		@NamedQuery(name = "Vehiculo.findByPlaca", query = "SELECT vehiculo FROM Vehiculo vehiculo WHERE vehiculo.placa = :placa"),
-		@NamedQuery(name = "Vehiculo.findAll", query = "SELECT vehiculo FROM Vehiculo vehiculo ") })
+		@NamedQuery(name = "Vehiculo.findAll", query = "SELECT vehiculo FROM Vehiculo vehiculo") })
 public class VehiculoEntity {	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(nullable = false)
+	@Column(name="placa")
 	private String placa;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String tipo;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer cilindraje;
 
-	
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
-
 	
 
 	public void setCilindraje(Integer cilindraje) {
 		this.cilindraje = cilindraje;
 	}
-
-	
 
 	public String getPlaca() {
 		return placa;
@@ -51,6 +47,12 @@ public class VehiculoEntity {
 
 	public Integer getCilindraje() {
 		return cilindraje;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo=tipo;
+		
 	}	
 	
 	

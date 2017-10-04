@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import dominio.ReciboDeServicioParqueadero;
 import dominio.Vehiculo;
@@ -25,7 +26,8 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 	private static final String RECIBOS_FIND = "Recibo.findAll";
 	
 	private EntityManager entityManager;
-	private RepositorioVehiculo repositorioVehiculo;
+	@Autowired
+	 RepositorioVehiculo repositorioVehiculo;
 	
 	
 	
@@ -94,7 +96,7 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 
 	private ReciboEntity buildReciboEntity(ReciboDeServicioParqueadero recibo) {
 		 
-         VehiculoEntity vehiculo=repositorioVehiculo.obtenerVehiculoEntityPorPlaca(recibo.getVehiculo().getPlaca());
+         VehiculoEntity vehiculo=repositorioVehiculo.obtenerVehiculoEntityPorPlaca(recibo.getVehiculo().getPlaca());       
 		 ReciboEntity reciboEntity=new ReciboEntity();
 		 reciboEntity.setVehiculo(vehiculo);
 		 reciboEntity.setFechaIngreso(recibo.getFechaingreso());

@@ -21,24 +21,21 @@ import javax.persistence.NamedQuery;
 public class ReciboEntity {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	
+	private int id;	
 	@ManyToOne
-	@JoinColumn(name = "Placa_Vehiculo", referencedColumnName = "id")
+	@JoinColumn(name = "id_Vehiculo", referencedColumnName = "id")
 	private VehiculoEntity vehiculo;
+	
 	@Column(name = "fechaIngreso")
 	private Calendar fechaIngreso;
+	
 	@Column(name = "fechaEgreso")
 	private Calendar fechaEgreso;
+	
 	@Column(name = "valor")
 	private double valor;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public VehiculoEntity getVehiculo() {
 		return vehiculo;
 	}

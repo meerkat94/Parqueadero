@@ -2,11 +2,18 @@ package dominio;
 
 import java.util.Calendar;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import dominio.reglas.ReglasParqueadero;
 import repositorio.RepositorioRecibo;
 import repositorio.RepositorioVehiculo;
 
 public class Vigilante {	
+	@Autowired
+	RepositorioRecibo repositorioRecibo;
+	@Autowired
+	RepositorioVehiculo repositorioVehiculo;
 	private List<ReglasParqueadero> reglasingreso;	
 	private Parqueadero parqueadero;
 
@@ -18,14 +25,16 @@ public class Vigilante {
 		
 	}	
 	
-	public ReciboDeServicioParqueadero ingresarUnVehiculo(Vehiculo vehiculo) {		
+	public void ingresarUnVehiculo(Vehiculo vehiculo) {		
 		Calendar fecha=Calendar.getInstance();		
 		for (ReglasParqueadero regla : reglasingreso) {
 			 regla.validar(vehiculo,parqueadero);			 
 		}
-		return new ReciboDeServicioParqueadero(vehiculo,fecha);
+		ReciboDeServicioParqueadero recibo =new ReciboDeServicioParqueadero(vehiculo, fecha);		
+		repositorioVehiculo.insertar(vehiculo);
+		repositorioRecibo.insertar(recibo);
 		
-		
+					
 	}
 	
 	

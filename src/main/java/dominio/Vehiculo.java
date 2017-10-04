@@ -1,9 +1,12 @@
 package dominio;
 
-public  class Vehiculo {
+public class Vehiculo {
 	
-	public final String placa;		
+	private  String placa;		
 	
+	public Vehiculo(){
+		
+	}
 	public String getPlaca() {
 		return placa;
 	}
@@ -13,10 +16,4 @@ public  class Vehiculo {
 	
 	}
 	
-	
-	
-	
-	
-	
-
 }
