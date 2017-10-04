@@ -11,6 +11,8 @@ import dominio.reglas.ReglaCapacidadDelParqueadero;
 import dominio.reglas.ReglaMotoDeAltoCilindraje;
 import dominio.reglas.ReglaPrimerLetraDeLaPlaca;
 import dominio.reglas.ReglasParqueadero;
+import repositorio.RepositorioRecibo;
+import repositorio.RepositorioVehiculo;
 
 
 @Configuration
@@ -24,8 +26,8 @@ public class ParqueaderoConfig {
 		}	
 
 	@Bean
-	public Vigilante crearVigilante(){		
-		return new Vigilante(crearReglasIngreso(),crearReglasEgreso(),new Parqueadero(MAXIMO_CARROS,MAXIMO_MOTOS));
+	public Vigilante crearVigilante(RepositorioVehiculo repositorioVehiculo,RepositorioRecibo repositorioRecibo){		
+		return new Vigilante(crearReglasIngreso(),new Parqueadero(MAXIMO_CARROS,MAXIMO_MOTOS),repositorioVehiculo,repositorioRecibo);
 	}
 	@Bean
 	public List<ReglasParqueadero> crearReglasIngreso(){

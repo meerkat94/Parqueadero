@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import dominio.Carro;
 import dominio.Parqueadero;
 import dominio.ReciboDeServicioParqueadero;
@@ -13,20 +15,21 @@ import dominio.Vigilante;
 import dominio.reglas.ReglaCapacidadDelParqueadero;
 import dominio.reglas.ReglaPrimerLetraDeLaPlaca;
 import dominio.reglas.ReglasParqueadero;
+import repositorio.RepositorioRecibo;
+import repositorio.RepositorioVehiculo;
 
 
 
 public class VigilanteTest {
 		
-//	@Autowired
-//	ReglasParqueadero reglas;
-//	@Autowired
-//	Vigilante vigilante;
-//	
+	
+	@Autowired
+	RepositorioRecibo repositorioRecibo;
+	RepositorioVehiculo repositorioVehiculo;
 	
 	private Parqueadero parqueadero=new Parqueadero(20, 10);
 	private List<ReglasParqueadero> reglasIngreso=new ArrayList<>();
-	private Vigilante vigilante = new Vigilante(anadirreglas(),parqueadero);
+	private Vigilante vigilante = new Vigilante(anadirreglas(),parqueadero,repositorioVehiculo,repositorioRecibo);
 	private Vehiculo vehiculo;	
 	
 	private List<ReglasParqueadero> anadirreglas() {
