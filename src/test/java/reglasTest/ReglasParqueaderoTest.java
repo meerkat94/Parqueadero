@@ -56,6 +56,7 @@ public class ReglasParqueaderoTest {
 		//Assert
 		try {
 			reglaPrimerLetraDeLaPlaca.validar(vehiculo,parqueadero);
+			fail();
 
 		} catch (ServicioParqueoException e) {			
 			Assert.assertEquals("No Puede Ingresar El Dia De Hoy", e.getMessage());
@@ -71,8 +72,8 @@ public class ReglasParqueaderoTest {
 		//Assert
 		assertTrue(reglaPrimerLetraDeLaPlaca.validar(vehiculo, parqueadero));
 		
-		
 	}
+	
 	
 	@Test
 	public void hayCapacidadEnelParqueaderoDeCarrosTest() {
@@ -91,6 +92,7 @@ public class ReglasParqueaderoTest {
 		Vehiculo carro=new Carro("FCD012");
 		try {
 			reglaCapacidadDelParqueadero.validar(carro,parqueadero);
+			fail();
 
 		} catch (ServicioParqueoException e) {			
 			Assert.assertEquals("No Hay Capacidad Para carros", e.getMessage());
@@ -116,6 +118,7 @@ public class ReglasParqueaderoTest {
 		//Act //Assert
 		try {
 			reglaCapacidadDelParqueadero.validar(moto,parqueadero);
+			fail();
 
 		} catch (ServicioParqueoException e) {			
 			Assert.assertEquals("No Hay Capacidad Para Motos", e.getMessage());

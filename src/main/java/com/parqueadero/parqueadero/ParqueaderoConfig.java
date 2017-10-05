@@ -28,6 +28,11 @@ public class ParqueaderoConfig {
 	public Vigilante crearVigilante(RepositorioVehiculo repositorioVehiculo,RepositorioRecibo repositorioRecibo){		
 		return new Vigilante(crearReglasIngreso(),new Parqueadero(MAXIMO_CARROS,MAXIMO_MOTOS),repositorioVehiculo,repositorioRecibo);
 	}
+//	@Bean
+//	public Vigilante crearVigilante(RepositorioVehiculo repositorioVehiculo,RepositorioRecibo repositorioRecibo){		
+//		return new Vigilante(crearReglasIngreso(),crearReglasEgreso(),new Parqueadero(MAXIMO_CARROS,MAXIMO_MOTOS),repositorioVehiculo,repositorioRecibo);
+//	}
+	
 	@Bean
 	public List<ReglasParqueadero> crearReglasIngreso(){
 	List<ReglasParqueadero> reglas =new ArrayList<>();
@@ -35,5 +40,12 @@ public class ParqueaderoConfig {
 	reglas.add(new ReglaPrimerLetraDeLaPlaca());
 	return reglas;
 	}
+//	@Bean
+//	public List<ReglasParqueadero> crearReglasEgreso(){
+//	List<ReglasParqueadero> reglas =new ArrayList<>();
+//	reglas.add(new ReglaCapacidadDelParqueadero());
+//	reglas.add(new ReglaPrimerLetraDeLaPlaca());
+//	return reglas;
+//	}
 
 }

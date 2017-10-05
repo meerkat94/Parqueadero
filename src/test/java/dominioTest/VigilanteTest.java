@@ -79,4 +79,13 @@ public class VigilanteTest {
 			Assert.assertEquals("El Vehiculo Ya Se Encuetra En El Parqueadero", e.getMessage());
 		}		
 	}
+//	@Test
+//	public void  darSAlidarAcarroParqueadoTest() {
+//		//Arrange	
+//		vehiculo =new Carro("FCM308");				
+//		vigilante.darSalidaAcarro(vehiculo);
+//		Assert.assertNotNull(repositorioRecibo.obtenerPorPlaca(vehiculo.getPlaca()));
+//				
+//		
+//	}
 }
