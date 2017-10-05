@@ -1,6 +1,5 @@
 package persistencia.entidad;
 import java.util.Calendar;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
+import persistencia.entidad.VehiculoEntity;
 
 @Entity(name = "Recibo")
 @NamedQueries({
@@ -22,6 +21,7 @@ public class ReciboEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;	
+	
 	@ManyToOne
 	@JoinColumn(name = "id_Vehiculo", referencedColumnName = "id")
 	private VehiculoEntity vehiculo;

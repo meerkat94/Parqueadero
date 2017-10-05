@@ -6,7 +6,9 @@ public class Carro extends Vehiculo{
 		super(placa);
 		
 	}
-
+	public Carro(){	
+		
+	}
 	
 	
 

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import dominio.Parqueadero;
 import dominio.Vigilante;
 import dominio.reglas.ReglaCapacidadDelParqueadero;
-import dominio.reglas.ReglaMotoDeAltoCilindraje;
 import dominio.reglas.ReglaPrimerLetraDeLaPlaca;
 import dominio.reglas.ReglasParqueadero;
 import repositorio.RepositorioRecibo;
@@ -36,11 +35,5 @@ public class ParqueaderoConfig {
 	reglas.add(new ReglaPrimerLetraDeLaPlaca());
 	return reglas;
 	}
-	@Bean
-	public List<ReglasParqueadero> crearReglasEgreso(){
-		List<ReglasParqueadero> reglas =new ArrayList<>();
-		reglas.add(new ReglaMotoDeAltoCilindraje());
-		return reglas;
-	}
-	
+
 }

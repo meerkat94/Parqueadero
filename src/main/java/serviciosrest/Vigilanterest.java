@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import dominio.Carro;
+import dominio.Moto;
 import dominio.ReciboDeServicioParqueadero;
 import dominio.Vehiculo;
 import dominio.Vigilante;
@@ -34,11 +36,17 @@ public class Vigilanterest {
 		return "PARQUEADERO";
 	}
 	
-	@RequestMapping(value = "/IngresoCarro", method = RequestMethod.POST)
+	@RequestMapping(value = "/Ingreso/Carro", method = RequestMethod.POST)
 	@ResponseBody
-	public void servicioIngresarCarro(@RequestBody Vehiculo carro) {
-		vigilante.ingresarUnVehiculo(carro);
-			//return(repositorioRecibo.obtenerPorPlaca(carro.getPlaca()));
-						
+	public ReciboDeServicioParqueadero servicioIngresarCarro(@RequestBody Carro carro) {
+		Vehiculo vehiculo=carro;
+		return vigilante.ingresarUnVehiculo(vehiculo);						
+	}
+	
+	@RequestMapping(value = "/Ingreso/Moto", method = RequestMethod.POST)
+	@ResponseBody
+	public ReciboDeServicioParqueadero servicioIngresarMoto(@RequestBody Moto moto) {
+		Vehiculo vehiculo=moto;
+		return vigilante.ingresarUnVehiculo(vehiculo);						
 	}
 }

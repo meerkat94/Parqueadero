@@ -17,6 +17,12 @@ public class Parqueadero {
 		this.capacidadCarros = capacidadCarros;
 		this.capacidadMotos = capacidadMotos;
 	}
+	public void setCapacidadCarros(int capacidadCarros) {
+		this.capacidadCarros = capacidadCarros;
+	}
+	public void setCapacidadMotos(int capacidadMotos) {
+		this.capacidadMotos = capacidadMotos;
+	}
 	
 	
 	

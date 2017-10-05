@@ -9,7 +9,9 @@ public class Moto extends Vehiculo{
 		super(placa);
 		this.cilindraje = cilindraje;
 	}
-
+	public Moto() {
+	
+	}
 
 	public int getCilindraje() {
 		return cilindraje;

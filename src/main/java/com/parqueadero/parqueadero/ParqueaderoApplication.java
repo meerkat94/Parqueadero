@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages={"com.parqueadero.parqueadero","dominio.reglas","serviciosrest","persistencia.repositorio"})
+@ComponentScan(basePackages={"com.parqueadero.parqueadero","dominio","serviciosrest","persistencia.repositorio"})
 @EntityScan("persistencia.entidad")
 public class ParqueaderoApplication {
 

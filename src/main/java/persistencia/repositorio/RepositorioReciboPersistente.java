@@ -1,6 +1,5 @@
 package persistencia.repositorio;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,10 +7,10 @@ import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import dominio.ReciboDeServicioParqueadero;
 import dominio.Vehiculo;
 import dominio.excepcion.ServicioParqueoException;
-import persistencia.builder.ReciboBuilder;
 import persistencia.builder.VehiculoBuilder;
 import persistencia.entidad.ReciboEntity;
 import persistencia.entidad.VehiculoEntity;
@@ -23,12 +22,11 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 
 	private static final String PLACA = "placa";
 	private static final String RECIBO_BY_PLACA = "Recibo.findByPlaca";
-	private static final String RECIBOS_FIND = "Recibo.findAll";
+	
 	
 	private EntityManager entityManager;
 	@Autowired
 	 RepositorioVehiculo repositorioVehiculo;
-	
 	
 	
 	public RepositorioReciboPersistente(EntityManager entityManager) {
@@ -63,29 +61,7 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 	}
 
 
-	@Override
-	public List<ReciboDeServicioParqueadero> obtenerListaRecibos() {
-		
-		List<ReciboEntity> listaEntity = listarRecibos();
-		List<ReciboDeServicioParqueadero> listarecibos = new ArrayList<>();
-		try {	
-			for (int i = 0; i < listaEntity.size(); ++i) {
-				ReciboDeServicioParqueadero recibo = ReciboBuilder.convertirADominio(listaEntity.get(i));
-				listarecibos.add(recibo);
-			}
-		}
-		catch (Exception e) {
-			throw new ServicioParqueoException("No Hay Recibos");
-		}
-		return listarecibos;
-	
-	}
-	@SuppressWarnings("unchecked")
-	private List<ReciboEntity> listarRecibos() {
-		Query query = entityManager.createNamedQuery(RECIBOS_FIND);	
-		List<ReciboEntity> resultList = query.getResultList();
-		return !resultList.isEmpty() ? resultList : null;
-	}
+
 
 	@Override
 	public void insertar(ReciboDeServicioParqueadero recibo) {

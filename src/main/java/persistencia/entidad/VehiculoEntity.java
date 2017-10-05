@@ -41,15 +41,6 @@ public class VehiculoEntity {
 		return placa;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public Integer getCilindraje() {
-		return cilindraje;
-	}
-
-
 	public void setTipo(String tipo) {
 		this.tipo=tipo;
 		
