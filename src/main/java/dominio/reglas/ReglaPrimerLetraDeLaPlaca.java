@@ -11,14 +11,22 @@ public class ReglaPrimerLetraDeLaPlaca implements ReglasParqueadero {
 	@Override
 	public boolean validar(Vehiculo vehiculo, Parqueadero parqueadero) {
 		String placa = vehiculo.getPlaca();
-		char[] placaEnChar = placa.toCharArray();
 		Calendar fechaActual = Calendar.getInstance();
-		if (placaEnChar[0] == ('A') && ((fechaActual.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY)
-				|| (fechaActual.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY))) {			
+		if (placaIniciaPorA(placa) && noEsUnDiaHabil(fechaActual)) {			
 				throw new  ServicioParqueoException("No Puede Ingresar El Dia De Hoy");
 		}
 		return true;
 
+	}
+
+	private boolean noEsUnDiaHabil(Calendar fechaActual) {
+		return (fechaActual.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY)
+				|| (fechaActual.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY);
+	}
+
+	private boolean placaIniciaPorA(String placa) {
+		char[] placaEnChar = placa.toCharArray();
+		return placaEnChar[0] == ('A');
 	}
 
 }

@@ -46,13 +46,17 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 		 VehiculoEntity vehiculoEntity=new VehiculoEntity();
 		 vehiculoEntity.setPlaca(vehiculo.getPlaca());	
 		 vehiculoEntity.setCilindraje(0);
-		 if(vehiculo instanceof Moto){
+		 buildMoto(vehiculo, vehiculoEntity);
+		 vehiculoEntity.setTipo("Carro");			
+		return vehiculoEntity;
+	}
+
+	private void buildMoto(Vehiculo vehiculo, VehiculoEntity vehiculoEntity) {
+		if(vehiculo instanceof Moto){
 			 vehiculoEntity.setCilindraje(((Moto) vehiculo).getCilindraje());
 			 vehiculoEntity.setTipo("Moto");
 			 parqueadero.setCapacidadMotos(parqueadero.getCapacidadMotos()-1);			 
 		 }
-		 vehiculoEntity.setTipo("Carro");			
-		return vehiculoEntity;
 	}
 
 	

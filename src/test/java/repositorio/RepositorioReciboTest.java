@@ -6,10 +6,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import dominio.Carro;
-import dominio.Moto;
 import dominio.Vehiculo;
-import persistencia.entidad.VehiculoEntity;
 import persistencia.repositorio.RepositorioReciboPersistente;
 
 public class RepositorioReciboTest {

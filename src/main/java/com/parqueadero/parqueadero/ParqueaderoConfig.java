@@ -43,8 +43,6 @@ public class ParqueaderoConfig {
 //	@Bean
 //	public List<ReglasParqueadero> crearReglasEgreso(){
 //	List<ReglasParqueadero> reglas =new ArrayList<>();
-//	reglas.add(new ReglaCapacidadDelParqueadero());
-//	reglas.add(new ReglaPrimerLetraDeLaPlaca());
 //	return reglas;
 //	}
 

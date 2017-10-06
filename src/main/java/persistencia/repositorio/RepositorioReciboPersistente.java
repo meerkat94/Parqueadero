@@ -52,7 +52,7 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 	public ReciboDeServicioParqueadero obtenerPorPlaca(String placa) {
 		ReciboEntity reciboEntity = obtenerReciboEntityPorPlaca(placa);
 		try {				
-			return new ReciboDeServicioParqueadero(VehiculoBuilder.convertirADominio(reciboEntity.getVehiculo()),reciboEntity.getFechaIngreso(),
+			return  new ReciboDeServicioParqueadero(VehiculoBuilder.convertirADominio(reciboEntity.getVehiculo()),reciboEntity.getFechaIngreso(),
 			reciboEntity.getFechaEgreso(),reciboEntity.getValor());
 		
 		} catch (Exception e) {

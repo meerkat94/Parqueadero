@@ -4,12 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import dominio.Carro;
 import dominio.Moto;
 import dominio.Parqueadero;
@@ -31,7 +26,7 @@ public class ReglasParqueaderoTest {
 		ReglaMotoDeAltoCilindraje reglaMotoAltoCilindraje=new  ReglaMotoDeAltoCilindraje();
 		Moto moto=Mockito.mock(Moto.class);
 		//Act
-		Mockito.when(moto.getCilindraje()).thenReturn(501);	
+		Mockito.when(moto.getCilindraje()).thenReturn(999);	
 		//Assert
 		assertTrue(reglaMotoAltoCilindraje.validar(moto, parqueadero));
 	}
@@ -41,7 +36,7 @@ public class ReglasParqueaderoTest {
 		ReglaMotoDeAltoCilindraje reglaMotoAltoCilindraje=new  ReglaMotoDeAltoCilindraje();
 		Moto moto=Mockito.mock(Moto.class);
 		//Act
-		Mockito.when(moto.getCilindraje()).thenReturn(100);		
+		Mockito.when(moto.getCilindraje()).thenReturn(500);		
 		//Assert
 		assertFalse(reglaMotoAltoCilindraje.validar(moto, parqueadero));
 	}

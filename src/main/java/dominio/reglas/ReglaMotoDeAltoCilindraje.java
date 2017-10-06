@@ -6,14 +6,13 @@ import dominio.Vehiculo;
 
 public class ReglaMotoDeAltoCilindraje implements ReglasParqueadero {
 
+	private static final int LIMITE_CILINDRAJE = 500;
+
 	@Override
 	public boolean validar(Vehiculo vehiculo, Parqueadero parqueadero) {
-		if(vehiculo instanceof Moto){
 			Moto moto =(Moto)vehiculo;
-			int limiteCilindraje=500;
-			return(moto.getCilindraje()>limiteCilindraje);
-		}
-		return false;
+			int limiteCilindraje=LIMITE_CILINDRAJE;
+			return(moto.getCilindraje()>limiteCilindraje);	
 	}
 
 }

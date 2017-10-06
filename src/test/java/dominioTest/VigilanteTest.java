@@ -14,6 +14,7 @@ import com.parqueadero.parqueadero.ParqueaderoApplication;
 
 import dominio.Carro;
 import dominio.Moto;
+import dominio.Parqueadero;
 import dominio.Vehiculo;
 import dominio.Vigilante;
 import dominio.excepcion.ServicioParqueoException;
@@ -30,7 +31,8 @@ public class VigilanteTest {
 	RepositorioRecibo repositorioRecibo;
 	@Autowired
 	RepositorioVehiculo repositorioVehiculo;
-	
+	@Autowired
+	Parqueadero parqueadero;	
 	private Vehiculo vehiculo;	
 	
 
@@ -79,6 +81,8 @@ public class VigilanteTest {
 			Assert.assertEquals("El Vehiculo Ya Se Encuetra En El Parqueadero", e.getMessage());
 		}		
 	}
+	
+
 //	@Test
 //	public void  darSAlidarAcarroParqueadoTest() {
 //		//Arrange	
