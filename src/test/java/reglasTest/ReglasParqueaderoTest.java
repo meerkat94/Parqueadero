@@ -1,10 +1,18 @@
 package reglasTest;
-
+ 
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.parqueadero.parqueadero.ParqueaderoApplication;
+
 import dominio.Carro;
 import dominio.Moto;
 import dominio.Parqueadero;
@@ -13,12 +21,16 @@ import dominio.excepcion.ServicioParqueoException;
 import dominio.reglas.ReglaCapacidadDelParqueadero;
 import dominio.reglas.ReglaMotoDeAltoCilindraje;
 import dominio.reglas.ReglaPrimerLetraDeLaPlaca;
+import repositorio.RepositorioRecibo;
 import testdatabuilder.ParqueaderoTestDataBuilder;
 
 
-
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes={ParqueaderoApplication.class})
+@DataJpaTest
 public class ReglasParqueaderoTest {	
-	
+@Autowired 
+RepositorioRecibo repositorioRecibo;
 	Parqueadero parqueadero =new ParqueaderoTestDataBuilder().build();
 	@Test
 	public void esMotoDeAltoCilindrajeTest() {
@@ -73,7 +85,7 @@ public class ReglasParqueaderoTest {
 	@Test
 	public void hayCapacidadEnelParqueaderoDeCarrosTest() {
 		//Arrange
-		ReglaCapacidadDelParqueadero reglaCapacidadDelParqueadero=new ReglaCapacidadDelParqueadero();		
+		ReglaCapacidadDelParqueadero reglaCapacidadDelParqueadero=new ReglaCapacidadDelParqueadero(repositorioRecibo);		
 		Vehiculo carro=new Carro("FCD012");
 		//Act //Assert
 		assertTrue(reglaCapacidadDelParqueadero.validar(carro, parqueadero));
@@ -83,7 +95,7 @@ public class ReglasParqueaderoTest {
 	public void noHayCapacidadEnelParqueaderoDeCarrosTest() {
 		//Arrange
 		Parqueadero parqueadero =new ParqueaderoTestDataBuilder().concapacidadCarros(0).build();
-		ReglaCapacidadDelParqueadero reglaCapacidadDelParqueadero=new ReglaCapacidadDelParqueadero();		
+		ReglaCapacidadDelParqueadero reglaCapacidadDelParqueadero=new ReglaCapacidadDelParqueadero(repositorioRecibo);		
 		Vehiculo carro=new Carro("FCD012");
 		try {
 			reglaCapacidadDelParqueadero.validar(carro,parqueadero);
@@ -98,7 +110,7 @@ public class ReglasParqueaderoTest {
 	public void hayCapacidadEnelParqueaderoDeMotosTest() {
 		//Arrange
 		Parqueadero parqueadero =new ParqueaderoTestDataBuilder().concapacidadMotos(10).build();
-		ReglaCapacidadDelParqueadero reglaCapacidadDelParqueadero=new ReglaCapacidadDelParqueadero();		
+		ReglaCapacidadDelParqueadero reglaCapacidadDelParqueadero=new ReglaCapacidadDelParqueadero(repositorioRecibo);		
 		Vehiculo moto=new Moto("FCD012",200);
 		//Act //Assert
 		assertTrue(reglaCapacidadDelParqueadero.validar(moto, parqueadero));
@@ -108,7 +120,7 @@ public class ReglasParqueaderoTest {
 	public void noHayCapacidadEnelParqueaderoDeMotosTest() {
 		//Arrange
 		Parqueadero parqueadero =new ParqueaderoTestDataBuilder().concapacidadMotos(0).build();
-		ReglaCapacidadDelParqueadero reglaCapacidadDelParqueadero=new ReglaCapacidadDelParqueadero();		
+		ReglaCapacidadDelParqueadero reglaCapacidadDelParqueadero=new ReglaCapacidadDelParqueadero(repositorioRecibo);		
 		Vehiculo moto=new Moto("FCD012",500);
 		//Act //Assert
 		try {

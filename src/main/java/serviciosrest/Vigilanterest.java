@@ -49,4 +49,17 @@ public class Vigilanterest {
 		Vehiculo vehiculo=moto;
 		return vigilante.ingresarUnVehiculo(vehiculo);						
 	}
+	@RequestMapping(value = "/salida/carro", method = RequestMethod.POST)
+	@ResponseBody
+	public ReciboDeServicioParqueadero servicioDarSalidaCarro(@RequestBody Carro carro) {
+		Vehiculo vehiculo=carro;
+		return vigilante.darSalidaAvehiculo(vehiculo);			
+	}
+	
+	@RequestMapping(value = "/salida/moto", method = RequestMethod.POST)
+	@ResponseBody
+	public ReciboDeServicioParqueadero servicioDarSalidaMoto(@RequestBody Moto moto) {
+		Vehiculo vehiculo=moto;
+		return vigilante.darSalidaAvehiculo(vehiculo);	
+	}
 }

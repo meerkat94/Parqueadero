@@ -11,9 +11,10 @@ public class ReciboDeServicioParqueadero {
 	
 	
 	public ReciboDeServicioParqueadero(Vehiculo vehiculo, Calendar fechaingreso) {
-		super();
 		this.vehiculo = vehiculo;
 		this.fechaingreso = fechaingreso;
+		this.fechaegreso = null;
+		this.valor = 0;
 		
 	}
 	

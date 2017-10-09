@@ -1,5 +1,7 @@
 package persistencia.repositorio;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import dominio.Moto;
 import dominio.Parqueadero;
 import dominio.Vehiculo;
+import persistencia.builder.VehiculoBuilder;
 import persistencia.entidad.VehiculoEntity;
 import repositorio.RepositorioVehiculo;
 @Repository
@@ -31,12 +34,13 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 	public VehiculoEntity obtenerVehiculoEntityPorPlaca(String placa) {
 		 Query query=entityManager.createNamedQuery(VEHICULO_FIND_BY_PLACA);
 		 query.setParameter(PLACA, placa);
-		return (VehiculoEntity) query.getSingleResult();
+		 List listaCarros = query.getResultList();
+		 return  listaCarros.isEmpty() ? null : (VehiculoEntity)listaCarros.get(0);
 	}
 
 	@Override
 	public void insertar(Vehiculo vehiculo) {		
-		VehiculoEntity vehiculoEntity=buildVehiculoEntity(vehiculo);		
+		VehiculoEntity vehiculoEntity=buildVehiculoEntity(vehiculo);
 		entityManager.persist(vehiculoEntity);
 		
 	}
@@ -44,19 +48,24 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 	private VehiculoEntity buildVehiculoEntity(Vehiculo vehiculo) {
 		               
 		 VehiculoEntity vehiculoEntity=new VehiculoEntity();
-		 vehiculoEntity.setPlaca(vehiculo.getPlaca());	
-		 vehiculoEntity.setCilindraje(0);
-		 buildMoto(vehiculo, vehiculoEntity);
-		 vehiculoEntity.setTipo("Carro");			
+		 vehiculoEntity.setPlaca(vehiculo.getPlaca());
+		 if(vehiculo instanceof Moto){
+			 vehiculoEntity.setCilindraje(((Moto) vehiculo).getCilindraje());
+			 vehiculoEntity.setTipo("Moto");
+		 }
+		 else{
+			 vehiculoEntity.setCilindraje(0);
+			 vehiculoEntity.setTipo("Carro");		
+		 }
 		return vehiculoEntity;
 	}
 
-	private void buildMoto(Vehiculo vehiculo, VehiculoEntity vehiculoEntity) {
-		if(vehiculo instanceof Moto){
-			 vehiculoEntity.setCilindraje(((Moto) vehiculo).getCilindraje());
-			 vehiculoEntity.setTipo("Moto");
-			 parqueadero.setCapacidadMotos(parqueadero.getCapacidadMotos()-1);			 
-		 }
+	@Override
+	public Vehiculo obtenerVehiculoPorPlaca(String placa) {
+		VehiculoEntity vehiculoentity = obtenerVehiculoEntityPorPlaca(placa);
+		return vehiculoentity!=null ? VehiculoBuilder.convertirADominio(vehiculoentity):null;
+		
+		
 	}
 
 	

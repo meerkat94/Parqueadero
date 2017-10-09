@@ -6,7 +6,7 @@ import dominio.Parqueadero;
 import dominio.Vehiculo;
 import dominio.excepcion.ServicioParqueoException;
 
-public class ReglaPrimerLetraDeLaPlaca implements ReglasParqueadero {
+public class ReglaPrimerLetraDeLaPlaca implements ReglasIngresoParqueadero {
 
 	@Override
 	public boolean validar(Vehiculo vehiculo, Parqueadero parqueadero) {
@@ -16,7 +16,6 @@ public class ReglaPrimerLetraDeLaPlaca implements ReglasParqueadero {
 				throw new  ServicioParqueoException("No Puede Ingresar El Dia De Hoy");
 		}
 		return true;
-
 	}
 
 	private boolean noEsUnDiaHabil(Calendar fechaActual) {

@@ -13,16 +13,7 @@ import persistencia.entidad.VehiculoEntity;
 
 public class BuilderTest {
 
-	@Test
-	public void ConvertirVehiculoEntityADominioTest(){
-		//arrange
-		VehiculoEntity vehiculoentity=new VehiculoEntity();	
-		//act//assert
-		Vehiculo vehiculo=VehiculoBuilder.convertirADominio(vehiculoentity);
-		assertNotNull(vehiculo);
-		assertTrue(vehiculo instanceof Vehiculo);
-	
-	}
+
 	@Test
 	public void ConvertirReciboEntityADominioTest(){
 		//arrange

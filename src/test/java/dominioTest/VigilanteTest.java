@@ -1,7 +1,5 @@
 package dominioTest;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,16 +13,16 @@ import com.parqueadero.parqueadero.ParqueaderoApplication;
 import dominio.Carro;
 import dominio.Moto;
 import dominio.Parqueadero;
+import dominio.ReciboDeServicioParqueadero;
 import dominio.Vehiculo;
 import dominio.Vigilante;
-import dominio.excepcion.ServicioParqueoException;
 import repositorio.RepositorioRecibo;
 import repositorio.RepositorioVehiculo;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes={ParqueaderoApplication.class})
+@SpringBootTest(classes = { ParqueaderoApplication.class })
 @DataJpaTest
-public class VigilanteTest {	
+public class VigilanteTest {
 	@Autowired
 	Vigilante vigilante;
 	@Autowired
@@ -32,64 +30,63 @@ public class VigilanteTest {
 	@Autowired
 	RepositorioVehiculo repositorioVehiculo;
 	@Autowired
-	Parqueadero parqueadero;	
-	private Vehiculo vehiculo;	
-	
+	Parqueadero parqueadero;
+	private Vehiculo vehiculo;
 
 	@Test
 	public void ingresarUnCarroTest() {
-		//Arrange	
-		vehiculo =new Carro("FCM308");
-		vigilante.ingresarUnVehiculo(vehiculo); 
-		//assert
+		// Arrange
+		vehiculo = new Carro("FCM308");
+		vigilante.ingresarUnVehiculo(vehiculo);
+		// assert
 		Assert.assertNotNull(repositorioRecibo.obtenerPorPlaca(vehiculo.getPlaca()));
-		
+
 	}
+
 	@Test
 	public void ingresarUnCarroParqueadoTest() {
-		//Arrange	
-		vehiculo =new Carro("FCM308");		
-		//assert		
-		vigilante.ingresarUnVehiculo(vehiculo); 
-		try {
-			vigilante.ingresarUnVehiculo(vehiculo);
-			fail();
-		} catch (ServicioParqueoException e) {		
-			Assert.assertEquals("El Vehiculo Ya Se Encuetra En El Parqueadero", e.getMessage());
-		}		
-	}	
+		// Arrange
+		vehiculo = new Carro("FCM308");
+		// assert
+		vigilante.ingresarUnVehiculo(vehiculo);
+
+		TestException testException = new TestException();
+
+		testException.probar(() -> vigilante.ingresarUnVehiculo(vehiculo),
+				"El Vehiculo Ya Se Encuetra En El Parqueadero");
+		
+	}
 
 	@Test
 	public void ingresarUnaMotoTest() {
-		//Arrange	
-		vehiculo =new Moto("FCM308",1500);
-		vigilante.ingresarUnVehiculo(vehiculo); 
-		//assert
+		// Arrange
+		vehiculo = new Moto("FCM308", 900);
+		vigilante.ingresarUnVehiculo(vehiculo);
+		// assert
 		Assert.assertNotNull(repositorioRecibo.obtenerPorPlaca(vehiculo.getPlaca()));
-		
+
 	}
+
 	@Test
 	public void ingresarUnaMotoParqueadoTest() {
-		//Arrange	
-		vehiculo =new Moto("FCM308",1500);		
-		//assert		
-		vigilante.ingresarUnVehiculo(vehiculo); 
-		try {
-			vigilante.ingresarUnVehiculo(vehiculo);
-			fail();
-		} catch (ServicioParqueoException e) {		
-			Assert.assertEquals("El Vehiculo Ya Se Encuetra En El Parqueadero", e.getMessage());
-		}		
+		// Arrange
+		vehiculo = new Moto("FCM308", 900);
+		// assert
+		vigilante.ingresarUnVehiculo(vehiculo);
+
+		TestException testException = new TestException();
+
+		testException.probar(() -> vigilante.ingresarUnVehiculo(vehiculo),
+				"El Vehiculo Ya Se Encuetra En El Parqueadero");
+
 	}
 	
-
-//	@Test
-//	public void  darSAlidarAcarroParqueadoTest() {
-//		//Arrange	
-//		vehiculo =new Carro("FCM308");				
-//		vigilante.darSalidaAcarro(vehiculo);
-//		Assert.assertNotNull(repositorioRecibo.obtenerPorPlaca(vehiculo.getPlaca()));
-//				
-//		
-//	}
+	 @Test
+	 public void ingresarYRetirarVehiculoMoto(){
+		 vehiculo = new Moto("FCM30A", 900);
+		 vigilante.ingresarUnVehiculo(vehiculo);
+		 ReciboDeServicioParqueadero recibo = vigilante.darSalidaAvehiculo(vehiculo);
+		 Assert.assertEquals(recibo.getVehiculo().getPlaca(), "FCM30A");
+		 
+	 }
 }

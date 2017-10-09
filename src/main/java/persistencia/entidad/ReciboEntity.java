@@ -13,9 +13,10 @@ import persistencia.entidad.VehiculoEntity;
 
 @Entity(name = "Recibo")
 @NamedQueries({
-		@NamedQuery(name = "Recibo.findByPlaca", query = "SELECT recibo from Recibo recibo where recibo.vehiculo.placa = :placa"),
-		@NamedQuery(name = "Recibo.findAll", query = "SELECT recibo from Recibo recibo") })
-
+		@NamedQuery(name = "Recibo.findByPlaca", query = "SELECT recibo from Recibo recibo where recibo.vehiculo.placa = :placa AND recibo.fechaEgreso IS NULL"),
+		@NamedQuery(name = "Recibo.findAll", query = "SELECT recibo from Recibo recibo") ,
+		@NamedQuery(name = "Recibo.findCellsCars", query = "SELECT COUNT(*) from Recibo recibo where recibo.vehiculo.tipo = :tipo_carro"),
+		@NamedQuery(name = "Recibo.findCellsBikes", query = "SELECT COUNT(*) from Recibo recibo where recibo.vehiculo.tipo = :tipo_moto")})
 
 public class ReciboEntity {	
 	@Id
@@ -29,7 +30,7 @@ public class ReciboEntity {
 	@Column(name = "fechaIngreso")
 	private Calendar fechaIngreso;
 	
-	@Column(name = "fechaEgreso")
+	@Column
 	private Calendar fechaEgreso;
 	
 	@Column(name = "valor")

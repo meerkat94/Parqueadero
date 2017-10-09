@@ -9,7 +9,8 @@ import dominio.Parqueadero;
 import dominio.Vigilante;
 import dominio.reglas.ReglaCapacidadDelParqueadero;
 import dominio.reglas.ReglaPrimerLetraDeLaPlaca;
-import dominio.reglas.ReglasParqueadero;
+import dominio.reglas.ReglasEgresoParqueadero;
+import dominio.reglas.ReglasIngresoParqueadero;
 import repositorio.RepositorioRecibo;
 import repositorio.RepositorioVehiculo;
 
@@ -24,26 +25,23 @@ public class ParqueaderoConfig {
 			return new Parqueadero(MAXIMO_CARROS,MAXIMO_MOTOS);
 		}	
 
-	@Bean
-	public Vigilante crearVigilante(RepositorioVehiculo repositorioVehiculo,RepositorioRecibo repositorioRecibo){		
-		return new Vigilante(crearReglasIngreso(),new Parqueadero(MAXIMO_CARROS,MAXIMO_MOTOS),repositorioVehiculo,repositorioRecibo);
-	}
-//	@Bean
-//	public Vigilante crearVigilante(RepositorioVehiculo repositorioVehiculo,RepositorioRecibo repositorioRecibo){		
-//		return new Vigilante(crearReglasIngreso(),crearReglasEgreso(),new Parqueadero(MAXIMO_CARROS,MAXIMO_MOTOS),repositorioVehiculo,repositorioRecibo);
-//	}
 	
 	@Bean
-	public List<ReglasParqueadero> crearReglasIngreso(){
-	List<ReglasParqueadero> reglas =new ArrayList<>();
-	reglas.add(new ReglaCapacidadDelParqueadero());
+	public Vigilante crearVigilante(RepositorioVehiculo repositorioVehiculo,RepositorioRecibo repositorioRecibo){		
+		return new Vigilante(crearReglasIngreso(repositorioRecibo),crearReglasEgreso(),new Parqueadero(MAXIMO_CARROS,MAXIMO_MOTOS),repositorioVehiculo,repositorioRecibo);
+	}
+	
+	@Bean
+	public List<ReglasIngresoParqueadero> crearReglasIngreso(RepositorioRecibo repositorioRecibo){
+	List<ReglasIngresoParqueadero> reglas =new ArrayList<>();
+	reglas.add(new ReglaCapacidadDelParqueadero(repositorioRecibo));
 	reglas.add(new ReglaPrimerLetraDeLaPlaca());
 	return reglas;
 	}
-//	@Bean
-//	public List<ReglasParqueadero> crearReglasEgreso(){
-//	List<ReglasParqueadero> reglas =new ArrayList<>();
-//	return reglas;
-//	}
+	@Bean
+	public List<ReglasEgresoParqueadero> crearReglasEgreso(){
+	List<ReglasEgresoParqueadero> reglas =new ArrayList<>();
+	return reglas;
+	}
 
 }
