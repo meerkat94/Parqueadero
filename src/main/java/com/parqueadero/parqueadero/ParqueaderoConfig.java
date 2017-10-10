@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import dominio.Parqueadero;
 import dominio.Vigilante;
 import dominio.reglas.ReglaCapacidadDelParqueadero;
@@ -40,8 +39,9 @@ public class ParqueaderoConfig {
 	}
 	@Bean
 	public List<ReglasEgresoParqueadero> crearReglasEgreso(){
-	List<ReglasEgresoParqueadero> reglas =new ArrayList<>();
-	return reglas;
+	return new ArrayList<>();
 	}
+	
+
 
 }

@@ -4,13 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import dominio.ReciboDeServicioParqueadero;
 import dominio.Vehiculo;
 import dominio.excepcion.ServicioParqueoException;
+import persistencia.builder.ReciboBuilder;
 import persistencia.builder.VehiculoBuilder;
 import persistencia.entidad.ReciboEntity;
 import persistencia.entidad.VehiculoEntity;
@@ -20,6 +19,7 @@ import repositorio.RepositorioVehiculo;
 @Repository
 public class RepositorioReciboPersistente implements RepositorioRecibo {
 
+	private static final String RECIBO_UPDATE = "Recibo.update";
 	private static final String PLACA = "placa";
 	private static final String TIPO_CARRO = "tipo_carro";
 	private static final String RECIBO_BY_PLACA = "Recibo.findByPlaca";
@@ -50,7 +50,11 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 		List listarecibos = query.getResultList();
 		return !listarecibos.isEmpty() ? (ReciboEntity) listarecibos.get(0) : null;
 	}
-	
+
+	@Override
+	public ReciboDeServicioParqueadero obtenerRecibo(String placa){
+		return ReciboBuilder.convertirADominio(obtenerReciboEntityPorPlaca(placa));
+	}
 	
 	public Long obtenerEspaciosOcupadosCarros() {
 		Query query = entityManager.createNamedQuery(ESPACIOS_CARRO_DISPONIBLES);
@@ -95,6 +99,19 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 		return reciboEntity;
 	}
 
+	@Override
+	public void actualizarRecibo(ReciboDeServicioParqueadero recibo) {
+		ReciboEntity reciboentity=ReciboBuilder.convertirAEntity(recibo);
+		actualizarReciboEntity(reciboentity);
+		
+	}
 
+	private void actualizarReciboEntity(ReciboEntity reciboentity){
+		Query query = entityManager.createNamedQuery(RECIBO_UPDATE);
+		query.setParameter("fechaEgreso", reciboentity.getFechaEgreso());
+		query.setParameter("valor", reciboentity.getValor());
+		query.executeUpdate();
+				
+	}
 	
 }

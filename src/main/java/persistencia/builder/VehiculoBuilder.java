@@ -10,13 +10,6 @@ public class VehiculoBuilder {
 	private VehiculoBuilder() {
 	}
 
-	// public static Vehiculo convertirADominio(VehiculoEntity vehiculoEntity) {
-	// Vehiculo vehiculo = null;
-	// if(vehiculoEntity != null) {
-	// vehiculo = new Vehiculo(vehiculoEntity.getPlaca());
-	// }
-	// return vehiculo;
-	// }
 
 	public static Vehiculo convertirADominio(VehiculoEntity vehiculoEntity) {
 		if (vehiculoEntity == null) {

@@ -39,8 +39,11 @@ public class ReciboDeServicioParqueadero {
 		return valor;
 	}
 
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
 
-
-	
-	
+	public void setFechaegreso(Calendar fechaegreso) {
+		this.fechaegreso = fechaegreso;
+	}
 }

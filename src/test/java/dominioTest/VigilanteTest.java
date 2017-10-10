@@ -18,6 +18,7 @@ import dominio.Vehiculo;
 import dominio.Vigilante;
 import repositorio.RepositorioRecibo;
 import repositorio.RepositorioVehiculo;
+import testdatabuilder.VehiculoTestDataBuilder;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { ParqueaderoApplication.class })
@@ -70,7 +71,7 @@ public class VigilanteTest {
 	@Test
 	public void ingresarUnaMotoParqueadoTest() {
 		// Arrange
-		vehiculo = new Moto("FCM308", 900);
+		Vehiculo vehiculo =new VehiculoTestDataBuilder().conPlaca("FCM123").build();		
 		// assert
 		vigilante.ingresarUnVehiculo(vehiculo);
 

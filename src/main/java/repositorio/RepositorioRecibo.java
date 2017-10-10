@@ -10,6 +10,8 @@ public interface RepositorioRecibo {
 	Vehiculo obtenerVehiculoEnArqueaderoPorPlaca(String placa);
 				
 	ReciboDeServicioParqueadero obtenerPorPlaca(String placa);
+	
+	ReciboDeServicioParqueadero obtenerRecibo(String placa);
 
 	void insertar(ReciboDeServicioParqueadero recibo);
 	
@@ -17,7 +19,10 @@ public interface RepositorioRecibo {
 	
 	Long obtenerEspaciosOcupadosMotos(); 
 	
-	ReciboEntity obtenerReciboEntityPorPlaca(String placa);	
+	ReciboEntity obtenerReciboEntityPorPlaca(String placa);
+
+	void actualizarRecibo(ReciboDeServicioParqueadero recibo);	
+	
 
 	
 }

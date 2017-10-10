@@ -34,7 +34,8 @@ public class RepositorioVehiculoPersistente implements RepositorioVehiculo {
 	public VehiculoEntity obtenerVehiculoEntityPorPlaca(String placa) {
 		 Query query=entityManager.createNamedQuery(VEHICULO_FIND_BY_PLACA);
 		 query.setParameter(PLACA, placa);
-		 List listaCarros = query.getResultList();
+		 @SuppressWarnings("rawtypes")
+		List listaCarros = query.getResultList();
 		 return  listaCarros.isEmpty() ? null : (VehiculoEntity)listaCarros.get(0);
 	}
 
