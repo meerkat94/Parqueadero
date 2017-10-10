@@ -1,5 +1,7 @@
 package serviciosrest;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +56,14 @@ public class Vigilanterest {
 	public ReciboDeServicioParqueadero servicioDarSalidaCarro(@RequestBody Vehiculo vehiculo) {
 			return vigilante.darSalidaAvehiculo(vehiculo);			
 	}
-	
+
+
+	@RequestMapping(value = "/lista/Vehiculosparqueados", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ReciboDeServicioParqueadero> servicioListarVehiculosEnParqueadero() {
+		return repositorioRecibo.obtenerListaVehiculosEnParqueadero();
+
+	}
 	
 }
 

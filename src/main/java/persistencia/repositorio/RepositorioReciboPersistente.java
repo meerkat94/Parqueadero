@@ -1,11 +1,14 @@
 package persistencia.repositorio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+
 import dominio.ReciboDeServicioParqueadero;
 import dominio.Vehiculo;
 import dominio.excepcion.ServicioParqueoException;
@@ -13,6 +16,7 @@ import persistencia.builder.ReciboBuilder;
 import persistencia.builder.VehiculoBuilder;
 import persistencia.entidad.ReciboEntity;
 import persistencia.entidad.VehiculoEntity;
+
 import repositorio.RepositorioRecibo;
 import repositorio.RepositorioVehiculo;
 
@@ -26,6 +30,7 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 	private static final String ESPACIOS_CARRO_DISPONIBLES = "Recibo.findCellsCars";
 	private static final String TIPO_MOTO = "tipo_moto";
 	private static final String ESPACIOS_MOTO_DISPONIBLES = "Recibo.findCellsBikes";
+	private static final String PRESTAMOS_FIND_All = "Recibo.findByAll";
 	
 	
 	private EntityManager entityManager;
@@ -96,6 +101,7 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 		 reciboEntity.setFechaIngreso(recibo.getFechaingreso());
 		 reciboEntity.setFechaEgreso(recibo.getFechaegreso());
 		 reciboEntity.setValor(recibo.getValor());
+		 reciboEntity
 		return reciboEntity;
 	}
 
@@ -106,6 +112,25 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 		reciboentity.setFechaEgreso(recibo.getFechaegreso());		
 	}
 
+	@Override
+	public List<ReciboDeServicioParqueadero> obtenerListaVehiculosEnParqueadero() {
+		List<ReciboEntity> listaEntity = listarRecibos();
+		List<ReciboDeServicioParqueadero> listaRecibos = new ArrayList<>();
+		for (int i = 0; i < listaEntity.size(); ++i) {
+			ReciboDeServicioParqueadero recibo = ReciboBuilder.convertirADominio(listaEntity.get(i));
+			listaRecibos.add(recibo);
+		}
+		return listaRecibos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<ReciboEntity> listarRecibos() {
+		Query query = entityManager.createNamedQuery(PRESTAMOS_FIND_All);		
+		List<ReciboEntity> resultList = query.getResultList();
+		return !resultList.isEmpty() ? resultList : null;
+	}
+}
+
 
 	
-}
+

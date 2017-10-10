@@ -1,5 +1,7 @@
 package repositorio;
 
+import java.util.List;
+
 import dominio.ReciboDeServicioParqueadero;
 import dominio.Vehiculo;
 import persistencia.entidad.ReciboEntity;
@@ -21,7 +23,9 @@ public interface RepositorioRecibo {
 	
 	ReciboEntity obtenerReciboEntityPorPlaca(String placa);
 
-	void actualizarRecibo(ReciboDeServicioParqueadero recibo);	
+	void actualizarRecibo(ReciboDeServicioParqueadero recibo);
+
+	List<ReciboDeServicioParqueadero> obtenerListaVehiculosEnParqueadero();	
 	
 
 	
