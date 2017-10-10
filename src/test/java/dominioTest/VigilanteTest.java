@@ -90,4 +90,15 @@ public class VigilanteTest {
 		 Assert.assertEquals(recibo.getVehiculo().getPlaca(), "FCM30A");
 		 
 	 }
+	 
+	 @Test
+	 public void RetirarVehiculoQueNoHaIngresado(){
+		 vehiculo = new Moto("FCM30A", 900); 		
+		 TestException testException = new TestException();
+			testException.probar(() -> vigilante.darSalidaAvehiculo(vehiculo),
+		 "El Vehiculo No Se Encuetra En El Parqueadero");
+	 }
+	 
+	
+	 
 }

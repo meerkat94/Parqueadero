@@ -101,7 +101,7 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 		 reciboEntity.setFechaIngreso(recibo.getFechaingreso());
 		 reciboEntity.setFechaEgreso(recibo.getFechaegreso());
 		 reciboEntity.setValor(recibo.getValor());
-		 reciboEntity
+		
 		return reciboEntity;
 	}
 
@@ -115,18 +115,30 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 	@Override
 	public List<ReciboDeServicioParqueadero> obtenerListaVehiculosEnParqueadero() {
 		List<ReciboEntity> listaEntity = listarRecibos();
-		List<ReciboDeServicioParqueadero> listaRecibos = new ArrayList<>();
-		for (int i = 0; i < listaEntity.size(); ++i) {
-			ReciboDeServicioParqueadero recibo = ReciboBuilder.convertirADominio(listaEntity.get(i));
-			listaRecibos.add(recibo);
+		
+			if(listaEntity==null){
+				throw new ServicioParqueoException("no hay vehiculos en el parqueadero");
+			}
+			else{
+				List<ReciboDeServicioParqueadero> listaRecibos = new ArrayList<>();				
+				for (int i = 0; i < listaEntity.size(); ++i) {
+					ReciboDeServicioParqueadero recibo = ReciboBuilder.convertirADominio(listaEntity.get(i));
+					listaRecibos.add(recibo);
+			}
+			return listaRecibos;
+			}
 		}
-		return listaRecibos;
-	}
+	
+		
+
 	
 	@SuppressWarnings("unchecked")
 	private List<ReciboEntity> listarRecibos() {
 		Query query = entityManager.createNamedQuery(PRESTAMOS_FIND_All);		
 		List<ReciboEntity> resultList = query.getResultList();
+		if(resultList==null){
+			throw new ServicioParqueoException("no hay vehiculos en el parqueadero");
+		}
 		return !resultList.isEmpty() ? resultList : null;
 	}
 }

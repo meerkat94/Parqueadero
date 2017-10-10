@@ -59,6 +59,7 @@ public class Vigilante {
 	}
 
 	 public ReciboDeServicioParqueadero darSalidaAvehiculo(Vehiculo vehiculo) {	
+		 if(repositorioRecibo.obtenerVehiculoEnArqueaderoPorPlaca(vehiculo.getPlaca())!=null ){
 		 fechaSalida=Calendar.getInstance();
 		 ReglaCobro reglacobro= new ReglaCobro();
 		 ReciboDeServicioParqueadero recibo = repositorioRecibo.obtenerRecibo(vehiculo.getPlaca());
@@ -66,6 +67,9 @@ public class Vigilante {
 		 recibo.setValor(reglacobro.calcular(recibo.getVehiculo(), recibo.getFechaingreso(), recibo.getFechaegreso() ));
 		 repositorioRecibo.actualizarRecibo(recibo);
 		 return recibo;
-	 }
+		 }
+		 throw new ServicioParqueoException("El Vehiculo No Se Encuetra En El Parqueadero");
+		}
+		 
 }
 

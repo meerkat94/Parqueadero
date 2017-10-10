@@ -32,7 +32,7 @@ public class Vigilanterest {
 	@Autowired
 	RepositorioVehiculo repositorioVehiculo;
 
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	@ResponseBody
 	String home() {
 		return "PARQUEADERO";

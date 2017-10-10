@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import dominio.Vehiculo;
 import persistencia.repositorio.RepositorioReciboPersistente;
 
@@ -21,5 +20,6 @@ RepositorioReciboPersistente repositorioRecibo;
 		assertNotNull(vehiculo);	
 			
 	}
+
 
 }
