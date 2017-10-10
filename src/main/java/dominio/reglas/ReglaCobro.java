@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import dominio.Carro;
 import dominio.Moto;
 import dominio.Parqueadero;
 import dominio.Vehiculo;
@@ -33,13 +34,12 @@ ReglaMotoDeAltoCilindraje  reglamoto=new ReglaMotoDeAltoCilindraje();
 			if (vehiculo instanceof Moto) {				
 				int dias = (int)Math.floor((horas/CANTIDAD_DE_HORAS_QUE_TIENE_UN_DIA));
 				totalApagar += VALOR_DIA_PARQUEADERO_MOTO*dias;
-				totalApagar += (horas%CANTIDAD_DE_HORAS_QUE_TIENE_UN_DIA)*VALOR_HORA_PARQUEADERO_MOTO;
-				
+				totalApagar += (horas%CANTIDAD_DE_HORAS_QUE_TIENE_UN_DIA)*VALOR_HORA_PARQUEADERO_MOTO;				
 				if(reglamoto.validar(vehiculo, parqueadero)){
 					totalApagar+=RECARGO_MOTO_ALTO_CILINDRAJE;
 				}
 			}	
-			else{
+			if(vehiculo instanceof Carro){
 				totalApagar += (int)(horas/CANTIDAD_DE_HORAS_QUE_TIENE_UN_DIA)*VALOR_DIA_PARQUEADERO_CARRO;
 				totalApagar += (horas%CANTIDAD_DE_HORAS_QUE_TIENE_UN_DIA)*VALOR_HORA_PARQUEADERO_CARRO;	
 			}

@@ -19,7 +19,7 @@ import repositorio.RepositorioVehiculo;
 @Repository
 public class RepositorioReciboPersistente implements RepositorioRecibo {
 
-	private static final String RECIBO_UPDATE = "Recibo.update";
+
 	private static final String PLACA = "placa";
 	private static final String TIPO_CARRO = "tipo_carro";
 	private static final String RECIBO_BY_PLACA = "Recibo.findByPlaca";
@@ -101,17 +101,11 @@ public class RepositorioReciboPersistente implements RepositorioRecibo {
 
 	@Override
 	public void actualizarRecibo(ReciboDeServicioParqueadero recibo) {
-		ReciboEntity reciboentity=ReciboBuilder.convertirAEntity(recibo);
-		actualizarReciboEntity(reciboentity);
-		
+		ReciboEntity reciboentity=obtenerReciboEntityPorPlaca(recibo.getVehiculo().getPlaca());
+		reciboentity.setValor(recibo.getValor());
+		reciboentity.setFechaEgreso(recibo.getFechaegreso());		
 	}
 
-	private void actualizarReciboEntity(ReciboEntity reciboentity){
-		Query query = entityManager.createNamedQuery(RECIBO_UPDATE);
-		query.setParameter("fechaEgreso", reciboentity.getFechaEgreso());
-		query.setParameter("valor", reciboentity.getValor());
-		query.executeUpdate();
-				
-	}
+
 	
 }
