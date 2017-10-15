@@ -1,0 +1,13 @@
+<div style="text-align: center"> <h3>Ingresar Moto</h3></div>
+
+<form novalidate (ngSubmit)="submit()" #motoform="ngForm">
+  <div class="form-group">
+    <input type="text" id="placa" class="form-control"  placeholder="Placa" required name="placa" [(ngModel)]="moto.placa"/>
+  </div>
+  <div class="form-group">
+      <input type="text" id="cilindraje" class="form-control" placeholder="Cilindraje" required name="cilindraje" [(ngModel)] ="moto.cilindraje"/>
+   </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Ingresar </button>       
+    </div>
+</form>
