@@ -6,15 +6,19 @@ import 'rxjs/add/operator/map';
 import'rxjs/add/operator/catch';
 
 @Injectable()
-export class MotoService {
-
+export class CarroService {
   private _endPoint = "http://localhost:8090/ingreso";
-  
   constructor(private _http: Http) {}
-   
- public create(moto):Observable<any>{
+
+  public all():Observable<any>{
+    return this._http.get(`${this._endPoint}`)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
+ public create(carro):Observable<any>{
     const headers = new Headers({'Content-type':'application/json'});
-    return this._http.post(`${this._endPoint}/moto`,moto, headers)
+    return this._http.post(`${this._endPoint}/carro`,carro, headers)
     .map(this.extractData)
     .catch(this.handleError);
   }

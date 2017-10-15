@@ -1,3 +1,11 @@
-<p>
-  carro-form works!
-</p>
+<div style="text-align: center"> <h3>Ingresar Carro</h3></div>
+
+<form novalidate (ngSubmit)="submit()" #carroform="ngForm">
+        <div class="form-group">
+          <input type="text" id="placa" class="form-control"  placeholder="Placa" required name="placa" [(ngModel)]="carro.placa"/>
+        </div>
+       
+          <div class="form-group">
+              <button class="btn btn-primary" type="submit">Ingresar </button>       
+          </div>
+      </form>

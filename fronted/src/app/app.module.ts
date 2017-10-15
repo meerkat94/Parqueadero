@@ -4,23 +4,27 @@ import{FormsModule} from '@angular/forms';
 import{HttpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import { IngresoMotoComponent } from './components/ingreso-moto/ingreso-moto.component';
-import { ListarMotosComponent } from './components/listar-motos/listar-motos.component';
+
 import { IngresoCarroComponent } from './components/ingreso-carro/ingreso-carro.component';
-import { ListarCarroComponent } from './components/listar-carro/listar-carro.component';
+
 import {MotoService} from './services/moto.service';
+import {CarroService} from './services/carro.service';
 import {appRoutes} from './app.routing';
 import { RouterModule } from '@angular/router';
 import { VehiculoFormComponent } from './components/vehiculo-form/vehiculo-form.component';
 import { CarroFormComponent } from './components/carro-form/carro-form.component';
+import{SalidavehiculoService} from'./services/salidavehiculo.service';
+import { SalidaVehiculoComponent } from './components/salida-vehiculo/salida-vehiculo.component';
+import { SalidaformComponent } from './components/salidaform/salidaform.component';
 @NgModule({
   declarations: [
     AppComponent,
-    IngresoMotoComponent,
-    ListarMotosComponent,
+    IngresoMotoComponent,   
     IngresoCarroComponent,
-    ListarCarroComponent,
     VehiculoFormComponent,
-    CarroFormComponent
+    CarroFormComponent,
+    SalidaVehiculoComponent,
+    SalidaformComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -28,7 +32,7 @@ import { CarroFormComponent } from './components/carro-form/carro-form.component
     FormsModule,
     HttpModule
   ],
-  providers: [MotoService],
+  providers: [MotoService,CarroService,SalidavehiculoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

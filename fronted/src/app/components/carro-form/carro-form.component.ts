@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-carro-form',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carro-form.component.css']
 })
 export class CarroFormComponent implements OnInit {
-
+  @Output() onSubmit=new EventEmitter<any>();
+  
+  @Input() carro;
   constructor() { }
 
   ngOnInit() {
   }
 
+  public submit(){
+    console.log("hola");
+    this.onSubmit.emit({carro:this.carro});
+  }
 }
