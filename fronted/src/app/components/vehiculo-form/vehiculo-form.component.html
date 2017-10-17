@@ -1,13 +1,25 @@
 <div style="text-align: center"> <h3>Ingresar Moto</h3></div>
-
+    <script>
+        function validarCilindraje(cilindraje)
+        {
+            alert(cilindraje);
+            if(cilindraje<0)
+            {
+                alert("Cilindraje Incorrecto");
+                document.getElementById("btn").disable=true;
+            }
+        }
+    </script>
 <form novalidate (ngSubmit)="submit()" #motoform="ngForm">
   <div class="form-group">
     <input type="text" id="placa" style="text-transform:uppercase" class="form-control"  placeholder="Placa" maxlength="6" required name="placa" [(ngModel)]="moto.placa"/>
   </div>
   <div class="form-group">
-      <input type="number" id="cilindraje" min="0" max="10000" class="form-control" placeholder="Cilindraje" required name="cilindraje" [(ngModel)] ="moto.cilindraje"/>
+      <input type="number" id="cilindraje" min="0" max="10000" onchange=validarCilindraje(this.value) class="form-control" placeholder="Cilindraje" required name="cilindraje" [(ngModel)] ="moto.cilindraje"/>
    </div>
     <div class="form-group">
-        <button class="btn btn-primary" type="submit">Ingresar </button>       
+        <button id="btn" class="btn btn-primary" type="submit">Ingresar </button>       
     </div>
+
+
 </form>

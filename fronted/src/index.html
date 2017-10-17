@@ -14,6 +14,19 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+    <script>
+        function validarCilindraje(cilindraje)
+        {
+            if(cilindraje<0)
+            {
+                alert("Cilindraje Incorrecto");
+                document.getElementById("btn").disabled=true;
+            }
+            else{
+              document.getElementById("btn").disabled=false;
+            }
+        }
+    </script>
 <div id="contenedor">
   <app-root></app-root>
 </div>
