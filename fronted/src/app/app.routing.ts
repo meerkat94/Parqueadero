@@ -6,6 +6,7 @@ export const appRoutes:Routes = [
     {path: 'moto/ingreso', component: IngresoMotoComponent},   
     {path: 'carro/ingreso', component: IngresoCarroComponent},
     {path: 'vehiculo/salida', component: SalidaVehiculoComponent},
+    {path: 'lista/vehiculo', component: SalidaVehiculoComponent},
     {path: '', redirectTo :'/moto',pathMatch : 'full'}
     
 ];

@@ -15,8 +15,8 @@ import persistencia.entidad.VehiculoEntity;
 @NamedQueries({
 		@NamedQuery(name = "Recibo.findByPlaca", query = "SELECT recibo from Recibo recibo where recibo.vehiculo.placa = :placa AND recibo.fechaEgreso IS NULL"),
 		@NamedQuery(name = "Recibo.findAll", query = "SELECT recibo from Recibo recibo") ,
-		@NamedQuery(name = "Recibo.findCellsCars", query = "SELECT COUNT(*) from Recibo recibo where recibo.vehiculo.tipo = :tipo_carro"),
-		@NamedQuery(name = "Recibo.findCellsBikes", query = "SELECT COUNT(*) from Recibo recibo where recibo.vehiculo.tipo = :tipo_moto"),
+		@NamedQuery(name = "Recibo.findCellsCars", query = "SELECT COUNT(*) from Recibo recibo where recibo.vehiculo.tipo = :tipo_carro AND recibo.fechaEgreso IS NULL"),
+		@NamedQuery(name = "Recibo.findCellsBikes", query = "SELECT COUNT(*) from Recibo recibo where recibo.vehiculo.tipo = :tipo_moto AND recibo.fechaEgreso IS NULL"),
 		@NamedQuery(name = "Recibo.findByAll", query = "SELECT recibo from Recibo recibo where recibo.fechaEgreso IS NULL" ),
 		})
 

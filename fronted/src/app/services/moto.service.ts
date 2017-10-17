@@ -21,6 +21,7 @@ export class MotoService {
   
 
   private extractData(res:Response){
+    alert("El Vehiculo se ingreso correctamente.");
     return res.json()||{};
   }
 
@@ -30,6 +31,7 @@ export class MotoService {
       const body =error.json() || '';
       const err = body.error|| JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err} `;
+      alert(body.message);
     }else{
       errMsg =error.message ? error.message : error.toString();
     }

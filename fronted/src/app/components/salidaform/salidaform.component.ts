@@ -1,4 +1,5 @@
 import { Component,Input, OnInit,Output,EventEmitter} from '@angular/core';
+import {SalidavehiculoService} from'../../services/salidavehiculo.service';
 
 @Component({
   selector: 'app-salidaform',
@@ -10,13 +11,14 @@ export class SalidaformComponent implements OnInit {
   @Output() onSubmit=new EventEmitter<any>();
   
   @Input() vehiculo;
-  constructor() { }
+
+  constructor( ) { }
 
   ngOnInit() {
+  
   }
 
   public submit(){
-    console.log("hola");
-    this.onSubmit.emit({vehiculo:this.vehiculo});
+      this.onSubmit.emit({vehiculo:this.vehiculo});
   }
 }

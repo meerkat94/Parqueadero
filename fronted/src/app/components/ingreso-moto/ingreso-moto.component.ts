@@ -25,8 +25,8 @@ export class IngresoMotoComponent implements OnInit {
 
   ingresoMoto(obj){
     console.log(obj);
-        this. _service.create(obj.moto).subscribe(res=>{
-      this._router.navigate(['/moto']);
+      this. _service.create(obj.moto).subscribe(res=>{
+      this._router.navigate(['lista/vehiculo']);
     });
   }
 

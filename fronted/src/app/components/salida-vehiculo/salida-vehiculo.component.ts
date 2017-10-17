@@ -9,6 +9,10 @@ import{SalidavehiculoService} from '../../services/salidavehiculo.service'
 })
 export class SalidaVehiculoComponent implements OnInit {
 
+   public recibo={
+     valor:0
+   };
+
   public vehiculo={
     placa:''
   };
@@ -21,8 +25,9 @@ export class SalidaVehiculoComponent implements OnInit {
 
   salidaVehiculo(obj){
     console.log(obj);
-        this. _service.create(obj.vehiculo).subscribe(res=>{
-      this._router.navigate(['/vehiculo']);
+        this. _service.darSalida(obj.vehiculo).subscribe(res=>{
+           this.recibo = res;
+       this._router.navigate(['lista/vehiculo']);
     });
   }
 

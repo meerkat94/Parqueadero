@@ -15,7 +15,6 @@ export class CarroFormComponent implements OnInit {
   }
 
   public submit(){
-    console.log("hola");
     this.onSubmit.emit({carro:this.carro});
   }
 }

@@ -34,6 +34,7 @@ public class Vigilante {
 		 }
 
 	public ReciboDeServicioParqueadero ingresarUnVehiculo(Vehiculo vehiculo) {
+		vehiculo.setPlaca(vehiculo.getPlaca().toUpperCase());
 		Calendar fechaActual = Calendar.getInstance();
 		validarReglasIngreso(vehiculo);
 		insertarVehiculo(vehiculo);
@@ -59,6 +60,7 @@ public class Vigilante {
 	}
 
 	 public ReciboDeServicioParqueadero darSalidaAvehiculo(Vehiculo vehiculo) {	
+		 vehiculo.setPlaca(vehiculo.getPlaca().toUpperCase());
 		 if(repositorioRecibo.obtenerVehiculoEnArqueaderoPorPlaca(vehiculo.getPlaca())!=null ){
 		 fechaSalida=Calendar.getInstance();
 		 ReglaCobro reglacobro= new ReglaCobro();

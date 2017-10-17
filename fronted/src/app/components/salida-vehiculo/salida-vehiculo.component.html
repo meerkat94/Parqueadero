@@ -1,10 +1,16 @@
 <div class="col-md-12">
   
-    <app-salidaform [vehiculo]="vehiculo" (onSubmit)="salidaVehiculo($event)" >
-   
+    <app-salidaform [vehiculo]="vehiculo" (onSubmit)="salidaVehiculo($event)" ngDefaultControl>   
     </app-salidaform>
   
+    
+    <h1>El valor a pagar es :</h1>
+    <h3>{{recibo.valor | currency:'USD':true }}</h3>
+
   </div>
+ <div>
+    <app-listavehiculos></app-listavehiculos>   
+</div> 
   
   
  

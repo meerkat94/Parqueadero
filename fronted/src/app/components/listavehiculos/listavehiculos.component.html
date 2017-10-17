@@ -1,0 +1,28 @@
+<div class="col-md-12">
+  <div class="panel panel-default">
+      <div class="panel-heading" style="text-align: center"><h1> Lista Vehiculos</h1></div>
+      <div class="panel-body">
+        <table class="table table-striped ">
+          <thead>  
+            <th>
+             <div style="text-align: center"> <h3>PLACA</h3></div>
+            </th>
+           
+            <th>
+              <div style="text-align: center"><h3>FECHA DE INGRESO</h3></div>
+          </th>  
+          </thead>
+          <TBODy>
+            <tr *ngFor="let vehiculo of vehiculos">
+              <td><div style="text-align: center"><h5>{{vehiculo.vehiculo.placa}}</h5></div></td>
+              <td><div style="text-align: center"><h5>{{vehiculo.fechaingreso | date:'medium'}}</h5></div></td>
+            </tr>
+          </TBODy>
+        </table>
+
+      </div>
+
+  </div>
+
+
+</div>

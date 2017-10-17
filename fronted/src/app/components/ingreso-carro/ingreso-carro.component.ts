@@ -22,7 +22,7 @@ export class IngresoCarroComponent implements OnInit {
   ingresoCarro(obj){
     console.log(obj);
         this. _service.create(obj.carro).subscribe(res=>{
-      this._router.navigate(['/carro']);
+      this._router.navigate(['/lista/vehiculo']);
     });
   }
 

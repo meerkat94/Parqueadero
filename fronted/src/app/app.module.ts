@@ -16,6 +16,10 @@ import { CarroFormComponent } from './components/carro-form/carro-form.component
 import{SalidavehiculoService} from'./services/salidavehiculo.service';
 import { SalidaVehiculoComponent } from './components/salida-vehiculo/salida-vehiculo.component';
 import { SalidaformComponent } from './components/salidaform/salidaform.component';
+import { ListavehiculosComponent } from './components/listavehiculos/listavehiculos.component';
+import{ListaVehiculosService} from './services/lista-vehiculos.service';
+import { DatePipe } from '@angular/common';
+import{}from'./services/'
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,8 @@ import { SalidaformComponent } from './components/salidaform/salidaform.componen
     VehiculoFormComponent,
     CarroFormComponent,
     SalidaVehiculoComponent,
-    SalidaformComponent
+    SalidaformComponent,
+    ListavehiculosComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -32,7 +37,7 @@ import { SalidaformComponent } from './components/salidaform/salidaform.componen
     FormsModule,
     HttpModule
   ],
-  providers: [MotoService,CarroService,SalidavehiculoService],
+  providers: [MotoService,CarroService,SalidavehiculoService,ListaVehiculosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
